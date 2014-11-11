@@ -6,7 +6,7 @@
     using UniversitySystem.Data.Migrations;
     using UniversitySystem.Models;
 
-    public class UniversitySystemDbContext : IdentityDbContext<User>
+    public class UniversitySystemDbContext : IdentityDbContext<User>, IUniversitySystemDbContext
     {
         public UniversitySystemDbContext()
             : base("UniversitySystemDb", throwIfV1Schema: false)
@@ -29,6 +29,11 @@
         public static UniversitySystemDbContext Create()
         {
             return new UniversitySystemDbContext();
+        }
+
+        public new void SaveChanges()
+        {
+            base.SaveChanges();
         }
     }
 }
