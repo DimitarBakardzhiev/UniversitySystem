@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using UniversitySystem.Data;
-using UniversitySystem.Models;
-
-namespace UniversitySystem.Web.Controllers
+﻿namespace UniversitySystem.Web.Controllers
 {
+    using System.Web.Mvc;
+
+    using UniversitySystem.Data;
+
     public class HomeController : Controller
     {
         private IUniversitySystemData data;
@@ -24,6 +20,10 @@ namespace UniversitySystem.Web.Controllers
 
         public ActionResult Index()
         {
+            //var seed = new SeedData();
+            //seed.CreateDepartments();
+            //seed.CreateUserRoles();
+
             return View();
         }
 

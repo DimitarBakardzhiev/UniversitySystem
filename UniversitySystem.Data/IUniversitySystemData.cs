@@ -1,7 +1,8 @@
 ﻿namespace UniversitySystem.Data
 {
-    using UniversitySystem.Data.Repositories;
-    using UniversitySystem.Models;
+    using Microsoft.AspNet.Identity.EntityFramework;
+using UniversitySystem.Data.Repositories;
+using UniversitySystem.Models;
 
     public interface IUniversitySystemData
     {
@@ -14,6 +15,8 @@
         IRepository<Lecture> Lectures { get; }
 
         IRepository<Lecturer> Lecturers { get; }
+
+        IRepository<IdentityRole> Roles { get; }
 
         void SaveChanges();
     }
