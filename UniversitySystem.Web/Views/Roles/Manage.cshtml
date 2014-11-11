@@ -1,0 +1,19 @@
+﻿@model IQueryable<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
+@{
+    ViewBag.Title = "Manage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Manage User Roles</h2>
+<form action="change" method="post">
+    <input type="text" name="username" class="form-control" placeholder="Username" />
+    <br />
+    <select name="role" class="form-control">
+        @foreach (var role in Model)
+        {
+            <option value="@role.Name">@role.Name</option>
+        }
+    </select>
+    <br />
+    <input type="submit" value="Change" class="btn btn-warning" />
+</form>

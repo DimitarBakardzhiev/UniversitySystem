@@ -73,6 +73,14 @@ namespace UniversitySystem.Data
             }
         }
 
+        public IRepository<User> Users
+        {
+            get
+            {
+                return this.GetRepository<User>();
+            }
+        }
+
         public void SaveChanges()
         {
             this.context.SaveChanges();
