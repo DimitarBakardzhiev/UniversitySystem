@@ -6,7 +6,14 @@
 
 <h2>Manage User Roles</h2>
 <form action="change" method="post">
-    <input type="text" name="username" class="form-control" placeholder="Username" />
+    @Html.AntiForgeryToken()
+    <input type="text" name="username" class="form-control" placeholder="Username" pattern="^[^<>/\~;:,]+$" 
+           oninvalid="setCustomValidity('You are trying to input forbidden characters')" />
+    <br />
+    <select name="addRole" class="form-control">
+        <option value="true">Add role</option>
+        <option value="false">Remove role</option>
+    </select>
     <br />
     <select name="role" class="form-control">
         @foreach (var role in Model)

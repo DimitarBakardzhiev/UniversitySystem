@@ -1,13 +1,10 @@
 ﻿using Microsoft.AspNet.Identity.EntityFramework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using UniversitySystem.Data;
-
 namespace UniversitySystem.Web.Controllers
 {
+    using System.Linq;
+    using System.Web.Mvc;
+    using UniversitySystem.Data;
+
     public class RolesController : Controller
     {
         private IUniversitySystemData data;
@@ -27,33 +24,46 @@ namespace UniversitySystem.Web.Controllers
             return View(data.Roles.All());
         }
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
-        public ActionResult Change(string username, string role)
+        public ActionResult Change(string username, string role, bool addRole)
         {
             var user = this.data.Users.All().FirstOrDefault(u => u.Email.ToLower().Contains(username.ToLower()));
             var userRole = this.data.Roles.All().FirstOrDefault(u => u.Name == role);
 
             if(user == null)
             {
-                RedirectToAction("Error", new { message = "User not found!" });
+                TempData["message"] = "User not found!";
+                return RedirectToAction("Error", "Roles");
             }
 
             bool alreadyHasRole = user.Roles.FirstOrDefault(r => r.RoleId == userRole.Id) != null;
-            if (alreadyHasRole)
+            if (alreadyHasRole && addRole == true)
             {
-                RedirectToAction("Error", new { message = "This user already has this role!" });
+                TempData["message"] = "This user already has this role!";
+                return RedirectToAction("Error", "Roles");
             }
 
-            user.Roles.Add(new IdentityUserRole() { RoleId = userRole.Id, UserId = user.Id });
-            this.data.SaveChanges();
-
-            return View();
+            if (addRole == true)
+            {
+                user.Roles.Add(new IdentityUserRole() { RoleId = userRole.Id, UserId = user.Id });
+                this.data.SaveChanges();
+                var message = string.Format("{0} now has the role {1}!", user.Email, role);
+                return View(model: message);
+            }
+            else
+            {
+                var roleToRemove = user.Roles.FirstOrDefault(r => r.RoleId == userRole.Id && r.UserId == user.Id);
+                user.Roles.Remove(roleToRemove);
+                this.data.SaveChanges();
+                var message = string.Format("{0} has no longer the role {1}!", user.Email, role);
+                return View(model: message);
+            }
         }
-
-        [ChildActionOnly]
+        
         public ActionResult Error(string message)
         {
-            return View(message);
+            return View(TempData["message"]);
         }
     }
 }
