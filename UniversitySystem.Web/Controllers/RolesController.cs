@@ -4,6 +4,7 @@ namespace UniversitySystem.Web.Controllers
     using System.Linq;
     using System.Web.Mvc;
     using UniversitySystem.Data;
+    using UniversitySystem.Web.Models;
 
     public class RolesController : Controller
     {
@@ -59,6 +60,14 @@ namespace UniversitySystem.Web.Controllers
                 var message = string.Format("{0} has no longer the role {1}!", user.Email, role);
                 return View(model: message);
             }
+        }
+
+        public ActionResult Details()
+        {
+            var users = this.data.Users.All();
+            var roles = this.data.Roles.All();
+            var model = new UsersRolesViewModel(users, roles);
+            return View(model);
         }
         
         public ActionResult Error(string message)

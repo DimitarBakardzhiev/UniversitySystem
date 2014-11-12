@@ -1,0 +1,56 @@
+﻿@model UniversitySystem.Web.Models.UsersRolesViewModel
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+<table class="table table-striped table-hover ">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Student</th>
+            <th>Teacher</th>
+            <th>Admin</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.users)
+        {
+            <tr>
+                <td>@user.UserName</td>
+                <td>
+                    @if (user.Roles.FirstOrDefault(r => r.RoleId == Model.roles.FirstOrDefault(ro => ro.Name == "Student").Id) != null)
+                    {
+                        <strong class="text-success">Yes</strong>
+                    }
+                    @if(user.Roles.FirstOrDefault(r => r.RoleId == Model.roles.FirstOrDefault(ro => ro.Name == "Student").Id) == null)
+                    {
+                        <strong class="text-danger">No</strong>
+                    }
+                </td>
+                <td>
+                    @if (user.Roles.FirstOrDefault(r => r.RoleId == Model.roles.FirstOrDefault(ro => ro.Name == "Teacher").Id) != null)
+                    {
+                        <strong class="text-success">Yes</strong>
+                    }
+                    @if (user.Roles.FirstOrDefault(r => r.RoleId == Model.roles.FirstOrDefault(ro => ro.Name == "Teacher").Id) == null)
+                    {
+                        <strong class="text-danger">No</strong>
+                    }
+                </td>
+                <td>
+                    @if (user.Roles.FirstOrDefault(r => r.RoleId == Model.roles.FirstOrDefault(ro => ro.Name == "Admin").Id) != null)
+                    {
+                        <strong class="text-success">Yes</strong>
+                    }
+                    @if (user.Roles.FirstOrDefault(r => r.RoleId == Model.roles.FirstOrDefault(ro => ro.Name == "Admin").Id) == null)
+                    {
+                        <strong class="text-danger">No</strong>
+                    }
+                </td>
+            </tr>
+        }
+        
+    </tbody>
+</table>
