@@ -6,6 +6,7 @@ namespace UniversitySystem.Web.Controllers
     using UniversitySystem.Data;
     using UniversitySystem.Web.Models;
 
+    [Authorize(Roles="Admin")]
     public class RolesController : Controller
     {
         private IUniversitySystemData data;

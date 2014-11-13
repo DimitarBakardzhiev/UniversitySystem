@@ -57,6 +57,7 @@
     <Compile Include="Homework.cs" />
     <Compile Include="Lecture.cs" />
     <Compile Include="Lecturer.cs" />
+    <Compile Include="Semester.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Student.cs" />

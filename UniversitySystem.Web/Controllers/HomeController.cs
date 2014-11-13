@@ -20,9 +20,9 @@
 
         public ActionResult Index()
         {
-            //var seed = new SeedData();
-            //seed.CreateDepartments();
-            //seed.CreateUserRoles();
+            // var seed = new SeedData();
+            // seed.CreateDepartments();
+            // seed.CreateUserRoles();
 
             return View();
         }

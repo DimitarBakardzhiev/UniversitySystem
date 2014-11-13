@@ -17,8 +17,8 @@ namespace UniversitySystem.Models
 
         public string Name { get; set; }
 
-        public ICollection<Student> Students { get; set; }
+        public virtual ICollection<Student> Students { get; set; }
 
-        public ICollection<Lecturer> Lecturers { get; set; }
+        public virtual ICollection<Lecturer> Lecturers { get; set; }
     }
 }
