@@ -77,9 +77,13 @@ namespace UniversitySystem.Web.Controllers
             return View(model);
         }
         
-        public ActionResult Error(string message)
+        public JsonResult Users(string username)
         {
-            return View(TempData["message"]);
+            var users = this.data.Users.All()
+                .Where(u => u.Email.ToLower().Contains(username.ToLower()))
+                .Select(u => new { Username = u.Email })
+                .ToList();
+            return Json(users, JsonRequestBehavior.AllowGet);
         }
     }
 }

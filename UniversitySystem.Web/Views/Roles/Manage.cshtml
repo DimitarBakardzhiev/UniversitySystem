@@ -7,7 +7,7 @@
 <h2>Manage User Roles</h2>
 <form method="post">
     @Html.AntiForgeryToken()
-    <input type="text" name="username" class="form-control" placeholder="Username" pattern="^[^<>/\~;:,]+$" 
+    <input type="text" id="username" name="username" class="form-control" placeholder="Username" pattern="^[^<>/\~;:,]+$" 
            oninvalid="setCustomValidity('You are trying to input forbidden characters')" />
     <br />
     <select name="addRole" class="form-control">
@@ -24,3 +24,30 @@
     <br />
     <input type="submit" value="Change" class="btn btn-warning" />
 </form>
+
+@section scripts{
+<script src="~/Scripts/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $('#username').autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: 'users?username=' + $('#username').val(),
+                        dataType: 'json',
+                        data: {
+                            q: request.term
+                        },
+                        success: function (data) {
+                            var users = [];
+                            for (var i = 0, len = data.length; i < len; i++) {
+                                users[i] = data[i]["Username"];
+                            }
+
+                            response(users);
+                        }
+                    })
+                }
+            });
+        });
+    </script>
+}
