@@ -28,7 +28,7 @@ namespace UniversitySystem.Web.Controllers
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        public ActionResult Change(string username, string role, bool addRole)
+        public ActionResult Manage(string username, string role, bool addRole)
         {
             var user = this.data.Users.All().FirstOrDefault(u => u.Email.ToLower().Contains(username.ToLower()));
             var userRole = this.data.Roles.All().FirstOrDefault(u => u.Name == role);
@@ -36,14 +36,16 @@ namespace UniversitySystem.Web.Controllers
             if(user == null)
             {
                 TempData["message"] = "User not found!";
-                return RedirectToAction("Error", "Roles");
+                TempData["type"] = NotificationType.Error;
+                return RedirectToAction("Index", "Home");
             }
 
             bool alreadyHasRole = user.Roles.FirstOrDefault(r => r.RoleId == userRole.Id) != null;
             if (alreadyHasRole && addRole == true)
             {
                 TempData["message"] = "This user already has this role!";
-                return RedirectToAction("Error", "Roles");
+                TempData["type"] = NotificationType.Error;
+                return RedirectToAction("Index", "Home");
             }
 
             if (addRole == true)
@@ -51,7 +53,9 @@ namespace UniversitySystem.Web.Controllers
                 user.Roles.Add(new IdentityUserRole() { RoleId = userRole.Id, UserId = user.Id });
                 this.data.SaveChanges();
                 var message = string.Format("{0} now has the role {1}!", user.Email, role);
-                return View(model: message);
+                TempData["message"] = message;
+                TempData["type"] = NotificationType.Success;
+                return RedirectToAction("Index", "Home");
             }
             else
             {
@@ -59,7 +63,9 @@ namespace UniversitySystem.Web.Controllers
                 user.Roles.Remove(roleToRemove);
                 this.data.SaveChanges();
                 var message = string.Format("{0} has no longer the role {1}!", user.Email, role);
-                return View(model: message);
+                TempData["message"] = message;
+                TempData["type"] = NotificationType.Success;
+                return RedirectToAction("Index", "Home");
             }
         }
 

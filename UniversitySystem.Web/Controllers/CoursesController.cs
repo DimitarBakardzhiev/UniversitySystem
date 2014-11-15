@@ -5,6 +5,7 @@
 
     using UniversitySystem.Data;
     using UniversitySystem.Models;
+    using UniversitySystem.Web.Models;
 
     public class CoursesController : Controller
     {
@@ -34,9 +35,16 @@
             {
                 this.data.Courses.Add(course);
                 this.data.SaveChanges();
+                TempData["message"] = string.Format("Course {0} created!", course.Title);
+                TempData["type"] = NotificationType.Success;
             }
-
-            return new HttpStatusCodeResult(200); // TODO
+            else
+            {
+                TempData["message"] = "Title and course description are required!";
+                TempData["type"] = NotificationType.Error;
+            }
+            
+            return RedirectToAction("Index", "Home");
         }
     }
 }

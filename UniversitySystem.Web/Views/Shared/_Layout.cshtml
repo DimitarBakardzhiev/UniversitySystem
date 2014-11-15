@@ -40,6 +40,31 @@
         </div>
     </div>
     <div class="container body-content">
+        @if (TempData["message"] != null)
+        {
+            <br />
+            if (TempData["type"].ToString() == UniversitySystem.Web.Models.NotificationType.Success.ToString())
+            {
+                <div class="alert alert-dismissable alert-success">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>Well done!</strong> @TempData["message"]
+                </div>
+            }
+            if (TempData["type"].ToString() == UniversitySystem.Web.Models.NotificationType.Error.ToString())
+            {
+                <div class="alert alert-dismissable alert-danger">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>Error!</strong> @TempData["message"]
+                </div>
+            }
+            if (TempData["type"].ToString() == UniversitySystem.Web.Models.NotificationType.Warning.ToString())
+            {
+                <div class="alert alert-dismissable alert-warning">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <strong>Warning!</strong> @TempData["message"]
+                </div>
+            }
+        }
         @RenderBody()
         <hr />
         <footer>

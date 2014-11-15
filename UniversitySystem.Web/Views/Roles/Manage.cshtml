@@ -5,7 +5,7 @@
 }
 
 <h2>Manage User Roles</h2>
-<form action="change" method="post">
+<form method="post">
     @Html.AntiForgeryToken()
     <input type="text" name="username" class="form-control" placeholder="Username" pattern="^[^<>/\~;:,]+$" 
            oninvalid="setCustomValidity('You are trying to input forbidden characters')" />
