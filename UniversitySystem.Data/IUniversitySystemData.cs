@@ -8,6 +8,8 @@
     {
         IRepository<Course> Courses { get; }
 
+        IRepository<Student> Students { get; }
+
         IRepository<Department> Departments { get; }
 
         IRepository<Homework> Homework { get; }

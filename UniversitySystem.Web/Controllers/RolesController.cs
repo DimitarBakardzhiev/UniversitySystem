@@ -4,6 +4,7 @@ namespace UniversitySystem.Web.Controllers
     using System.Linq;
     using System.Web.Mvc;
     using UniversitySystem.Data;
+    using UniversitySystem.Models;
     using UniversitySystem.Web.Models;
 
     [Authorize(Roles="Admin")]
@@ -51,6 +52,17 @@ namespace UniversitySystem.Web.Controllers
             if (addRole == true)
             {
                 user.Roles.Add(new IdentityUserRole() { RoleId = userRole.Id, UserId = user.Id });
+                if (role == "Student")
+                {
+                    var studentProfile = new Student() { FirstName = user.FirstName, LastName = user.LastName, UserId = user.Id };
+                    this.data.Students.Add(studentProfile);
+                }
+                else if (role == "Teacher")
+                {
+                    var teacherProfile = new Lecturer() { FirstName = user.FirstName, LastName = user.LastName, UserId = user.Id };
+                    this.data.Lecturers.Add(teacherProfile);
+                }
+
                 this.data.SaveChanges();
                 var message = string.Format("{0} now has the role {1}!", user.Email, role);
                 TempData["message"] = message;

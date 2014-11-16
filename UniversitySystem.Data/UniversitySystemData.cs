@@ -33,6 +33,14 @@ namespace UniversitySystem.Data
             }
         }
 
+        public IRepository<Student> Students
+        {
+            get
+            {
+                return this.GetRepository<Student>();
+            }
+        }
+
         public IRepository<Department> Departments
         {
             get

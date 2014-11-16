@@ -1,25 +1,33 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using UniversitySystem.Web.Models;
-using UniversitySystem.Models;
-
-namespace UniversitySystem.Web.Controllers
+﻿namespace UniversitySystem.Web.Controllers
 {
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Web;
+    using System.Web.Mvc;
+
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
+    using Microsoft.Owin.Security;
+
+    using UniversitySystem.Web.Models;
+    using UniversitySystem.Models;
+    using UniversitySystem.Data;
+    using Microsoft.AspNet.Identity.EntityFramework;
+
     [Authorize]
     public class AccountController : Controller
     {
         private ApplicationUserManager _userManager;
+        private IUniversitySystemData data;
 
         public AccountController()
+            : this(new UniversitySystemData())
         {
+        }
+
+        public AccountController(IUniversitySystemData data)
+        {
+            this.data = data;
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
@@ -155,7 +163,7 @@ namespace UniversitySystem.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email };
+                var user = new User { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -166,6 +174,12 @@ namespace UniversitySystem.Web.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    
+                    var studentRole = this.data.Roles.All().FirstOrDefault(r => r.Name.ToLower() == "student");
+                    user.Roles.Add(new IdentityUserRole() { RoleId = studentRole.Id, UserId = user.Id });
+                    var studentProfile = new Student() { FirstName = user.FirstName, LastName = user.LastName, UserId = user.Id };
+                    this.data.Students.Add(studentProfile);
+                    this.data.SaveChanges();
 
                     return RedirectToAction("Index", "Home");
                 }
