@@ -79,6 +79,7 @@
         }
 
         [HttpPost]
+        [ValidateInput(enableValidation: false)]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Course course)
         {

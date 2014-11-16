@@ -1,4 +1,4 @@
-﻿@model UniversitySystem.Models.Lecturer
+﻿@model UniversitySystem.Web.Models.EditProfileViewModel
 @{
     ViewBag.Title = "Edit Profile";
 }
@@ -11,24 +11,23 @@
         <div class="form-group">
             <label for="first-name" class="col-lg-2 control-label">First name</label>
             <div class="col-lg-10">
-                <input type="text" class="form-control" id="first-name" value="@Model.FirstName">
+                <input type="text" name="FirstName" class="form-control" id="first-name" value="@Model.Lecturer.FirstName">
             </div>
         </div>
         <div class="form-group">
             <label for="last-name" class="col-lg-2 control-label">Last name</label>
             <div class="col-lg-10">
-                <input type="text" class="form-control" id="last-name" value="@Model.LastName">
+                <input type="text" name="LastName" class="form-control" id="last-name" value="@Model.Lecturer.LastName">
             </div>
         </div>
         <div class="form-group">
             <label for="select" class="col-lg-2 control-label">Department</label>
             <div class="col-lg-10">
-                <select class="form-control" id="select">
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
+                <select name="Department" class="form-control" id="select">
+                    @foreach (var department in Model.Departments)
+                    {
+                        <option value="@department.Id">@department.Name</option>
+                    }
                 </select>
             </div>
         </div>
