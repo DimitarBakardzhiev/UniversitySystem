@@ -1,0 +1,32 @@
+﻿@model IQueryable<UniversitySystem.Models.Course>
+@{
+    ViewBag.Title = "My Courses";
+}
+
+<h2>My Courses</h2>
+<table class="table table-striped table-hover ">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Year</th>
+            <th>Semester</th>
+            <th>Edit</th>
+            <th>Abandon</th>
+            <th>Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var course in Model)
+        {
+            <tr>
+                <td><a href="/Courses/Details/@course.Id">@course.Title</a></td>
+                <td>@course.Year</td>
+                <td>@course.Semester.ToString()</td>
+                <td><a href="/Courses/Edit/@course.Id" class="btn btn-primary btn-sm">Edit</a></td>
+                <td><a href="/Courses/LeaveTeacher/@course.Id" class="btn btn-warning btn-sm">Abandon</a></td>
+                <td><a href="/Courses/Delete/@course.Id" class="btn btn-warning btn-sm">Delete</a></td>
+            </tr>
+        }
+    </tbody>
+</table> 
+
