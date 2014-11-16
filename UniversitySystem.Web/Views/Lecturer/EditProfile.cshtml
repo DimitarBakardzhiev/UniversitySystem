@@ -4,7 +4,7 @@
 }
 
 <h2>Edit Profile</h2>
-<form class="form-horizontal">
+<form class="form-horizontal" method="post">
     @Html.AntiForgeryToken()
     <fieldset>
         <legend>Profile</legend>
@@ -23,7 +23,7 @@
         <div class="form-group">
             <label for="select" class="col-lg-2 control-label">Department</label>
             <div class="col-lg-10">
-                <select name="Department" class="form-control" id="select">
+                <select name="DepartmentId" class="form-control" id="select">
                     @foreach (var department in Model.Departments)
                     {
                         <option value="@department.Id">@department.Name</option>

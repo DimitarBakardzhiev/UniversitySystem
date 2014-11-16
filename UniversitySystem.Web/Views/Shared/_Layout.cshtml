@@ -33,10 +33,14 @@
                                     <li class="dropdown-header">Lecturer's panel</li>
                                     <li><a href="/Courses/create">Create course</a></li>
                                     <li><a href="/Lecturer/Courses">My courses</a></li>
-                                    <li><a href="/Lecturer/Profile">My lecturer's profile</a></li>
+                                    @*<li><a href="/Lecturer/Profile">My profile</a></li>*@
                                 }
                             </ul>
                         </li>
+                        if (User.IsInRole("Teacher"))
+                        {
+                            <li>@Html.ActionLink("My profile", "Profile", "Lecturer")</li>
+                        }
                     }
                     @if (User.IsInRole("Admin"))
                     {
