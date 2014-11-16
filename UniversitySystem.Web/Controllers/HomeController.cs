@@ -8,11 +8,6 @@
     {
         private IUniversitySystemData data;
 
-        public HomeController()
-            : this(new UniversitySystemData())
-        {
-        }
-
         public HomeController(IUniversitySystemData data)
         {
             this.data = data;

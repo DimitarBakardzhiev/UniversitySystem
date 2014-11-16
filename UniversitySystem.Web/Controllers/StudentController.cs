@@ -12,11 +12,6 @@ namespace UniversitySystem.Web.Controllers
     {
         private IUniversitySystemData data;
 
-        public StudentController()
-            : this(new UniversitySystemData())
-        {
-        }
-
         public StudentController(IUniversitySystemData data)
         {
             this.data = data;

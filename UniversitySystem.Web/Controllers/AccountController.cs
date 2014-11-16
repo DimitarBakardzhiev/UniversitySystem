@@ -20,11 +20,6 @@
         private ApplicationUserManager _userManager;
         private IUniversitySystemData data;
 
-        public AccountController()
-            : this(new UniversitySystemData())
-        {
-        }
-
         public AccountController(IUniversitySystemData data)
         {
             this.data = data;

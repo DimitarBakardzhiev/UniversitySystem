@@ -12,11 +12,6 @@
     {
         private IUniversitySystemData data;
 
-        public LecturerController()
-            : this(new UniversitySystemData())
-        {
-        }
-
         public LecturerController(IUniversitySystemData data)
         {
             this.data = data;

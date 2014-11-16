@@ -12,11 +12,6 @@ namespace UniversitySystem.Web.Controllers
     {
         private IUniversitySystemData data;
 
-        public RolesController()
-            : this(new UniversitySystemData())
-        {
-        }
-
         public RolesController(IUniversitySystemData data)
         {
             this.data = data;

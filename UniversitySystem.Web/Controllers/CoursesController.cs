@@ -13,11 +13,6 @@
     {
         private IUniversitySystemData data;
 
-        public CoursesController()
-            : this(new UniversitySystemData())
-        {
-        }
-
         public CoursesController(IUniversitySystemData data)
         {
             this.data = data;
