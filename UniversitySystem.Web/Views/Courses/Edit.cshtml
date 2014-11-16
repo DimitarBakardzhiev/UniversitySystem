@@ -1,0 +1,49 @@
+﻿@model UniversitySystem.Models.Course
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+<form class="form-horizontal" method="post">
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>Edit Course "@Model.Title"</legend>
+        <div class="form-group">
+            <label for="title" class="col-lg-2 control-label">Title</label>
+            <div class="col-lg-10">
+                <input type="text" name="title" class="form-control" id="title" value="@Model.Title" placeholder="Title" pattern="^[^<>]+$" required="required">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="description" class="col-lg-2 control-label">Description</label>
+            <div class="col-lg-10">
+                <textarea class="form-control" name="description" rows="3" id="description">@Model.Description</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="year" class="col-lg-2 control-label">Year</label>
+            <div class="col-lg-10">
+                <select class="form-control" name="year" id="year">
+                    <option selected="selected" value="@DateTime.Now.Year.ToString()">@DateTime.Now.Year</option>
+                    <option value="@DateTime.Now.AddYears(1).Year.ToString()">@DateTime.Now.AddYears(1).Year</option>
+                    <option value="@DateTime.Now.AddYears(2).Year.ToString()">@DateTime.Now.AddYears(2).Year</option>
+                </select>
+            </div>
+            <br /><br /><br />
+            <label for="semester" class="col-lg-2 control-label">Semester</label>
+            <div class="col-lg-10">
+                <select multiple="" class="form-control" name="semester" id="semester">
+                    <option>Winter</option>
+                    <option>Spring</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <button class="btn btn-default">Cancel</button>
+                <button type="submit" class="btn btn-primary">Edit</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+

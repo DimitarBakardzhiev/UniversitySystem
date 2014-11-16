@@ -1,0 +1,41 @@
+﻿@model UniversitySystem.Models.Course
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+<ul class="list-group">
+    <li class="list-group-item">
+        <span class="badge">@Model.Title</span>
+        Title
+    </li>
+    <li class="list-group-item">
+        <span class="badge">@Model.Description</span>
+        Description
+    </li>
+    <li class="list-group-item">
+        <span class="badge">@Model.Year</span>
+        Year
+    </li>
+    <li class="list-group-item">
+        <span class="badge">@Model.Semester.ToString()</span>
+        Semester
+    </li>
+    <li class="list-group-item">
+        <span class="badge">@string.Join(", ", Model.Lecturers.Select(l => new { Name = l.FirstName + ' ' + l.LastName }).Select(le => le.Name))</span>
+        Lecturers
+    </li>
+</ul>
+@if (User.IsInRole("Teacher") || User.IsInRole("Admin"))
+{
+    <a href="/Courses/JoinTeacher/@Model.Id" class="btn btn-primary">Become a lecturer</a>
+    <a href="/courses/LeaveTeacher/@Model.Id" class="btn btn-warning">Abandon course</a>
+    <a href="/Courses/Edit/@Model.Id" class="btn btn-primary">Edit</a>
+    <a href="/Courses/Delete/@Model.Id" class="btn btn-danger">Delete</a>
+}
+@if (User.IsInRole("Student"))
+{
+    <a href="/Courses/JoinStudent/@Model.Id" class="btn btn-primary">Join</a>
+    <a href="/courses/LeaveStudent/@Model.Id" class="btn btn-warning">Leave</a>
+}
+

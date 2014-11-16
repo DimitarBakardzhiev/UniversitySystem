@@ -30,8 +30,10 @@ namespace UniversitySystem.Models
 
         public virtual ICollection<Lecturer> Lecturers { get; set; }
 
+        [Required]
         public string Year { get; set; }
 
+        [Required]
         public Semester Semester { get; set; }
     }
 }

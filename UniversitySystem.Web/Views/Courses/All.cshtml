@@ -1,0 +1,36 @@
+﻿@model IQueryable<UniversitySystem.Models.Course>
+@{
+    ViewBag.Title = "All";
+}
+
+<h2>All courses</h2>
+<table class="table table-striped table-hover ">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Year</th>
+            <th>Semester</th>
+            @if (User.IsInRole("Teacher") || User.IsInRole("Admin"))
+            {
+                <th>Edit</th>
+                <th>Delete</th>
+            }
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var course in Model)
+        {
+            <tr>
+                <td><a href="/courses/details/@course.Id" class="btn btn-link">@course.Title</a></td>
+                <td>@course.Year</td>
+                <td>@course.Semester.ToString()</td>
+                @if (User.IsInRole("Teacher") || User.IsInRole("Admin"))
+	            {
+		            <td><a href="/courses/edit/@course.Id" class="btn btn-primary btn-sm">Edit</a></td>
+                    <td><a href="/courses/delete/@course.Id" class="btn btn-danger btn-sm">Delete</a></td>
+	            }
+            </tr>
+        }
+    </tbody>
+</table> 
+
