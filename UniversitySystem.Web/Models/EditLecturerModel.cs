@@ -2,7 +2,7 @@
 {
     using System.ComponentModel.DataAnnotations;
 
-    public class EditLecturerModel
+    public class EditProfileModel
     {
         [Required]
         [RegularExpression("^[a-zA-Z]+$")]

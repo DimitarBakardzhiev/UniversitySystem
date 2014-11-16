@@ -43,7 +43,7 @@
         [HttpPost]
         [ValidateInput(enableValidation: false)]
         [ValidateAntiForgeryToken]
-        public ActionResult EditProfile(EditLecturerModel lecturer)
+        public ActionResult EditProfile(EditProfileModel lecturer)
         {
             if (ModelState.IsValid)
             {

@@ -177,12 +177,14 @@
     <Compile Include="Controllers\LecturerController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\StudentController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\EditLecturerModel.cs" />
     <Compile Include="Models\EditProfileViewModel.cs" />
+    <Compile Include="Models\EditStudentsProfileViewModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\NotificationType.cs" />
     <Compile Include="Models\UsersRolesViewModel.cs" />
@@ -262,6 +264,9 @@
     <Content Include="Views\Lecturer\Profile.cshtml" />
     <Content Include="Views\Lecturer\Courses.cshtml" />
     <Content Include="Views\Lecturer\EditProfile.cshtml" />
+    <Content Include="Views\Student\Profile.cshtml" />
+    <Content Include="Views\Student\Courses.cshtml" />
+    <Content Include="Views\Student\EditProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

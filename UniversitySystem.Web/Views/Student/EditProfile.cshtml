@@ -1,4 +1,4 @@
-﻿@model UniversitySystem.Web.Models.EditProfileViewModel
+﻿@model UniversitySystem.Web.Models.EditStudentsProfileViewModel
 @{
     ViewBag.Title = "Edit Profile";
 }
@@ -11,13 +11,13 @@
         <div class="form-group">
             <label for="first-name" class="col-lg-2 control-label">First name</label>
             <div class="col-lg-10">
-                <input type="text" name="FirstName" class="form-control" id="first-name" value="@Model.Lecturer.FirstName">
+                <input type="text" name="FirstName" class="form-control" id="first-name" value="@Model.Student.FirstName">
             </div>
         </div>
         <div class="form-group">
             <label for="last-name" class="col-lg-2 control-label">Last name</label>
             <div class="col-lg-10">
-                <input type="text" name="LastName" class="form-control" id="last-name" value="@Model.Lecturer.LastName">
+                <input type="text" name="LastName" class="form-control" id="last-name" value="@Model.Student.LastName">
             </div>
         </div>
         <div class="form-group">
@@ -39,3 +39,4 @@
         </div>
     </fieldset>
 </form>
+

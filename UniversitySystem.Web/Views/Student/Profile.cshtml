@@ -1,0 +1,39 @@
+﻿@model UniversitySystem.Models.Student
+@{
+    ViewBag.Title = "My Profile";
+}
+
+<h2>Profile</h2>
+<ul class="list-group">
+    <li class="list-group-item">
+        <span class="badge">@Model.FirstName</span>
+        First name
+    </li>
+    <li class="list-group-item">
+        <span class="badge">@Model.LastName</span>
+        Last name
+    </li>
+    <li class="list-group-item">
+        <span class="badge">@Model.User.UserName</span>
+        Username
+    </li>
+    <li class="list-group-item">
+        <span class="badge">
+            @if (@Model.Department == null)
+            {
+                <span>No department</span>
+            }
+            @if (@Model.Department != null)
+            {
+                @Model.Department.Name
+            }
+        </span>
+        Department
+    </li>
+    <li class="list-group-item">
+        <span class="badge"><a href="/Student/Courses" class="btn btn-link btn-xs">My courses</a></span>
+        Courses
+    </li>
+</ul>
+<a href="/Student/EditProfile" class="btn btn-info">Edit</a>
+
