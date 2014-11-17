@@ -26,6 +26,8 @@
 
         public IDbSet<Department> Departments { get; set; }
 
+        public IDbSet<IdentityUserRole> UserRoles { get; set; }
+
         public static UniversitySystemDbContext Create()
         {
             return new UniversitySystemDbContext();

@@ -20,6 +20,8 @@
 
         IRepository<IdentityRole> Roles { get; }
 
+        IRepository<IdentityUserRole> UserRoles { get; }
+
         IRepository<User> Users { get; }
 
         void SaveChanges();

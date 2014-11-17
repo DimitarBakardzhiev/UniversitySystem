@@ -1,8 +1,8 @@
 ﻿namespace UniversitySystem.Data
 {
+    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Data.Entity;
-
     using UniversitySystem.Models;
 
     public interface IUniversitySystemDbContext
@@ -18,6 +18,8 @@
         IDbSet<Lecture> Lectures { get; set; }
 
         IDbSet<Student> Students { get; set; }
+
+        IDbSet<IdentityUserRole> UserRoles { get; set; }
 
         void SaveChanges();
     }

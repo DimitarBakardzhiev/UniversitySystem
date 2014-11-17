@@ -81,6 +81,14 @@ namespace UniversitySystem.Data
             }
         }
 
+        public IRepository<IdentityUserRole> UserRoles
+        {
+            get
+            {
+                return this.GetRepository<IdentityUserRole>();
+            }
+        }
+
         public IRepository<User> Users
         {
             get
