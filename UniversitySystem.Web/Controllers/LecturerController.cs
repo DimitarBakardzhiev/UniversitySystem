@@ -48,6 +48,9 @@
                 currentUserProfile.FirstName = lecturer.FirstName;
                 currentUserProfile.LastName = lecturer.LastName;
                 currentUserProfile.DepartmentId = lecturer.DepartmentId;
+
+                currentUser.FirstName = lecturer.FirstName;
+                currentUser.LastName = lecturer.LastName;
                 this.data.SaveChanges();
 
                 TempData["message"] = "Your profile has been updated!";

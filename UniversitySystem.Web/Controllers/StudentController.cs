@@ -57,6 +57,9 @@ namespace UniversitySystem.Web.Controllers
                 currentUserProfile.FirstName = student.FirstName;
                 currentUserProfile.LastName = student.LastName;
                 currentUserProfile.DepartmentId = student.DepartmentId;
+
+                currentUser.FirstName = student.FirstName;
+                currentUser.LastName = student.LastName;
                 this.data.SaveChanges();
 
                 TempData["message"] = "Your profile has been updated!";

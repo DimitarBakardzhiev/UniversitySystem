@@ -46,13 +46,19 @@ namespace UniversitySystem.Web.Controllers
 
             if (addRole == true)
             {
+                var currentUser = this.data.Users.All().FirstOrDefault(u => u.UserName == User.Identity.Name);
                 user.Roles.Add(new IdentityUserRole() { RoleId = userRole.Id, UserId = user.Id });
-                if (role == "Student")
+
+                bool studentProfileExists = this.data.Students.All()
+                    .FirstOrDefault(s => s.FirstName == currentUser.FirstName && s.LastName == currentUser.LastName) != null;
+                bool teacherProfileExists = this.data.Lecturers.All()
+                    .FirstOrDefault(s => s.FirstName == currentUser.FirstName && s.LastName == currentUser.LastName) != null;
+                if (role == "Student" && studentProfileExists == false)
                 {
                     var studentProfile = new Student() { FirstName = user.FirstName, LastName = user.LastName, UserId = user.Id };
                     this.data.Students.Add(studentProfile);
                 }
-                else if (role == "Teacher")
+                else if (role == "Teacher" && teacherProfileExists == false)
                 {
                     var teacherProfile = new Lecturer() { FirstName = user.FirstName, LastName = user.LastName, UserId = user.Id };
                     this.data.Lecturers.Add(teacherProfile);
