@@ -172,8 +172,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LectureController.cs" />
     <Compile Include="Controllers\LecturerController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
@@ -185,6 +187,7 @@
     <Compile Include="Models\EditLecturerModel.cs" />
     <Compile Include="Models\EditProfileViewModel.cs" />
     <Compile Include="Models\EditStudentsProfileViewModel.cs" />
+    <Compile Include="Models\LectureInputModel.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\NotificationType.cs" />
     <Compile Include="Models\UsersRolesViewModel.cs" />
@@ -267,9 +270,13 @@
     <Content Include="Views\Student\Profile.cshtml" />
     <Content Include="Views\Student\Courses.cshtml" />
     <Content Include="Views\Student\EditProfile.cshtml" />
+    <Content Include="Views\Lecture\All.cshtml" />
+    <Content Include="Views\Lecture\Create.cshtml" />
+    <Content Include="Views\Lecture\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

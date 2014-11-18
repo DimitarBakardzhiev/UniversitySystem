@@ -1,0 +1,27 @@
+﻿@model IQueryable<UniversitySystem.Models.Lecture>
+@{
+    ViewBag.Title = "Lectures";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lectures</h2>
+@if (Model.Count() == 0)
+{
+    <h3>No lectures!</h3>
+}
+
+@if (Model.Count() > 0)
+{
+    foreach (var lecture in Model)
+    {
+        <div>
+            <h3>@lecture.Title</h3>
+            <p>@lecture.Description</p>
+            @if (User.IsInRole("Teacher"))
+	        {
+		        <a href="/Lecture/Edit/@lecture.Id" class="btn btn-info">Edit</a>
+                <a href="/Lecture/Delete/@lecture.Id" class="btn btn-danger">Delete</a>
+	        }
+        </div>  
+    }
+}

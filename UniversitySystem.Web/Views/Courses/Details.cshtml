@@ -25,6 +25,10 @@
         <span class="badge">@string.Join(", ", Model.Lecturers.Select(l => new { Name = l.FirstName + ' ' + l.LastName }).Select(le => le.Name))</span>
         Lecturers
     </li>
+    <li class="list-group-item">
+        <span class="badge"><a href="/Lecture/All/@Model.Id">Lectures</a></span>
+        Lectures
+    </li>
 </ul>
 @if (User.IsInRole("Teacher") || User.IsInRole("Admin"))
 {
@@ -32,6 +36,7 @@
     <a href="/courses/LeaveTeacher/@Model.Id" class="btn btn-warning">Abandon course</a>
     <a href="/Courses/Edit/@Model.Id" class="btn btn-primary">Edit</a>
     <a href="/Courses/Delete/@Model.Id" class="btn btn-danger">Delete</a>
+    <a href="/Lecture/Create/@Model.Id" class="btn btn-info">Add lecture</a>
 }
 @if (User.IsInRole("Student"))
 {

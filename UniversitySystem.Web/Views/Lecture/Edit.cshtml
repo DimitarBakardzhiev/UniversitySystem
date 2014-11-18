@@ -1,0 +1,30 @@
+﻿@model UniversitySystem.Models.Lecture
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+<form class="form-horizontal" method="post">
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>Edit Course</legend>
+        <div class="form-group">
+            <label for="Title" class="col-lg-2 control-label">Title</label>
+            <div class="col-lg-10">
+                <input type="text" name="Title" value="@Model.Title" class="form-control" id="Title" placeholder="Title">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="Description" class="col-lg-2 control-label">@Model.Description</label>
+            <div class="col-lg-10">
+                <textarea class="form-control" name="Description" rows="3" id="Description"></textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
