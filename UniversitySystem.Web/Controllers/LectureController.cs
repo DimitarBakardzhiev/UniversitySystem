@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using UniversitySystem.Models;
-using UniversitySystem.Web.Models;
-
-namespace UniversitySystem.Web.Controllers
+﻿namespace UniversitySystem.Web.Controllers
 {
+    using System.Linq;
+    using System.Web.Mvc;
+
+    using UniversitySystem.Models;
+    using UniversitySystem.Web.Models;
+
     public class LectureController : BaseController
     {
         [Authorize(Roles = "Student, Teacher")]

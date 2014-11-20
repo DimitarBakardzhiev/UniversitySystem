@@ -8,7 +8,7 @@
         private DbContext context;
         private IDbSet<T> set;
 
-        public EFRepository(DbContext  context)
+        public EFRepository(DbContext context)
         {
             this.context = context;
             this.set = context.Set<T>();

@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace UniversitySystem.Models
+﻿namespace UniversitySystem.Models
 {
+    using System.Collections.Generic;
+
     public class Department
     {
         public Department()

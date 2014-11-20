@@ -4,36 +4,29 @@
 
     using UniversitySystem.Data;
 
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
-        private IUniversitySystemData data;
-
-        public HomeController(IUniversitySystemData data)
-        {
-            this.data = data;
-        }
-
         public ActionResult Index()
         {
             // var seed = new SeedData();
             // seed.CreateDepartments();
             // seed.CreateUserRoles();
 
-            return View();
+            return this.View();
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            this.ViewBag.Message = "Your application description page.";
 
-            return View();
+            return this.View();
         }
 
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
 
-            return View();
+            return this.View();
         }
     }
 }

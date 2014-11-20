@@ -1,8 +1,10 @@
 ﻿namespace UniversitySystem.Data
 {
-    using Microsoft.AspNet.Identity.EntityFramework;
     using System;
     using System.Data.Entity;
+
+    using Microsoft.AspNet.Identity.EntityFramework;
+
     using UniversitySystem.Models;
 
     public interface IUniversitySystemDbContext
