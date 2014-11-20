@@ -8,24 +8,31 @@
     using UniversitySystem.Web.Models;
 
     [Authorize(Roles = "Teacher")]
-    public class LecturerController : BaseController
+    public class LecturerController : Controller
     {
+        private IUniversitySystemData data;
+
+        public LecturerController(IUniversitySystemData data)
+        {
+            this.data = data;
+        }
+
         public ActionResult Profile()
         {
-            var currentUser = this.Data.Users.All().FirstOrDefault(u => u.UserName == User.Identity.Name);
-            var currentUserProfile = this.Data.Lecturers.All().FirstOrDefault(l => l.User.UserName == currentUser.UserName);
+            var currentUser = this.data.Users.All().FirstOrDefault(u => u.UserName == User.Identity.Name);
+            var currentUserProfile = this.data.Lecturers.All().FirstOrDefault(l => l.User.UserName == currentUser.UserName);
 
-            return this.View(currentUserProfile);
+            return View(currentUserProfile);
         }
 
         public ActionResult EditProfile()
         {
-            var currentUser = this.Data.Users.All().FirstOrDefault(u => u.UserName == User.Identity.Name);
-            var currentUserProfile = this.Data.Lecturers.All().FirstOrDefault(l => l.User.UserName == currentUser.UserName);
-            var departments = this.Data.Departments.All();
+            var currentUser = this.data.Users.All().FirstOrDefault(u => u.UserName == User.Identity.Name);
+            var currentUserProfile = this.data.Lecturers.All().FirstOrDefault(l => l.User.UserName == currentUser.UserName);
+            var departments = this.data.Departments.All();
             var model = new EditProfileViewModel(currentUserProfile, departments);
 
-            return this.View(model);
+            return View(model);
         }
 
         [HttpPost]
@@ -35,8 +42,8 @@
         {
             if (ModelState.IsValid)
             {
-                var currentUser = this.Data.Users.All().FirstOrDefault(u => u.UserName == User.Identity.Name);
-                var currentUserProfile = this.Data.Lecturers.All().FirstOrDefault(l => l.User.UserName == currentUser.UserName);
+                var currentUser = this.data.Users.All().FirstOrDefault(u => u.UserName == User.Identity.Name);
+                var currentUserProfile = this.data.Lecturers.All().FirstOrDefault(l => l.User.UserName == currentUser.UserName);
 
                 currentUserProfile.FirstName = lecturer.FirstName;
                 currentUserProfile.LastName = lecturer.LastName;
@@ -44,29 +51,29 @@
 
                 currentUser.FirstName = lecturer.FirstName;
                 currentUser.LastName = lecturer.LastName;
-                this.Data.SaveChanges();
+                this.data.SaveChanges();
 
-                this.TempData["message"] = "Your profile has been updated!";
-                this.TempData["type"] = NotificationType.Success;
+                TempData["message"] = "Your profile has been updated!";
+                TempData["type"] = NotificationType.Success;
 
-                return this.RedirectToAction("Profile", "Lecturer");
+                return RedirectToAction("Profile", "Lecturer");
             }
             else
             {
-                this.TempData["message"] = "You are trying to input some invalid Data!";
-                this.TempData["type"] = NotificationType.Error;
+                TempData["message"] = "You are trying to input some invalid data!";
+                TempData["type"] = NotificationType.Error;
 
-                return this.RedirectToAction("EditProfile", "Lecturer");
+                return RedirectToAction("EditProfile", "Lecturer");
             }
         }
 
         public ActionResult Courses()
         {
-            var currentUser = this.Data.Users.All().FirstOrDefault(u => u.UserName == User.Identity.Name);
-            var currentUserProfile = this.Data.Lecturers.All().FirstOrDefault(l => l.User.UserName == currentUser.UserName);
+            var currentUser = this.data.Users.All().FirstOrDefault(u => u.UserName == User.Identity.Name);
+            var currentUserProfile = this.data.Lecturers.All().FirstOrDefault(l => l.User.UserName == currentUser.UserName);
             var courses = currentUserProfile.Courses.AsQueryable();
 
-            return this.View(courses);
+            return View(courses);
         }
     }
 }

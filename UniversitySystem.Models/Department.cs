@@ -1,7 +1,10 @@
-﻿namespace UniversitySystem.Models
-{
-    using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
+namespace UniversitySystem.Models
+{
     public class Department
     {
         public Department()

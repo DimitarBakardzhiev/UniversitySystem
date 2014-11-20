@@ -1,13 +1,14 @@
-﻿namespace UniversitySystem.Data
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using UniversitySystem.Data.Repositories;
+using UniversitySystem.Models;
+
+namespace UniversitySystem.Data
 {
-    using System;
-    using System.Collections.Generic;
-
-    using Microsoft.AspNet.Identity.EntityFramework;
-
-    using UniversitySystem.Data.Repositories;
-    using UniversitySystem.Models;
-
     public class UniversitySystemData : IUniversitySystemData
     {
         private IUniversitySystemDbContext context;

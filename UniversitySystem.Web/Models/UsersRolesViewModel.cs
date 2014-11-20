@@ -1,21 +1,22 @@
-﻿namespace UniversitySystem.Web.Models
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using UniversitySystem.Models;
+
+namespace UniversitySystem.Web.Models
 {
-    using System.Linq;
-
-    using Microsoft.AspNet.Identity.EntityFramework;
-
-    using UniversitySystem.Models;
-
     public class UsersRolesViewModel
     {
+        public IQueryable<User> users { get; set; }
+
+        public IQueryable<IdentityRole> roles { get; set; }
+
         public UsersRolesViewModel(IQueryable<User> users, IQueryable<IdentityRole> roles)
         {
             this.users = users;
             this.roles = roles;
         }
-
-        public IQueryable<User> users { get; set; }
-
-        public IQueryable<IdentityRole> roles { get; set; }
     }
 }

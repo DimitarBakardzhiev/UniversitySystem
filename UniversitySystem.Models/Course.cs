@@ -1,8 +1,12 @@
-﻿namespace UniversitySystem.Models
-{
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
+namespace UniversitySystem.Models
+{
     public class Course
     {
         public Course()
