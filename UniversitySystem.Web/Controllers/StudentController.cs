@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using UniversitySystem.Data;
-using UniversitySystem.Web.Models;
-
-namespace UniversitySystem.Web.Controllers
+﻿namespace UniversitySystem.Web.Controllers
 {
+    using System.Linq;
+    using System.Web.Mvc;
+
+    using UniversitySystem.Data;
+    using UniversitySystem.Web.Models;
+
     public class StudentController : Controller
     {
         private IUniversitySystemData data;
@@ -22,7 +20,7 @@ namespace UniversitySystem.Web.Controllers
             var currentUser = this.data.Users.All().FirstOrDefault(u => u.UserName == User.Identity.Name);
             var currentUserProfile = this.data.Students.All().FirstOrDefault(l => l.User.UserName == currentUser.UserName);
 
-            return View(currentUserProfile);
+            return this.View(currentUserProfile);
         }
 
         public ActionResult Courses()
@@ -31,7 +29,7 @@ namespace UniversitySystem.Web.Controllers
             var currentUserProfile = this.data.Students.All().FirstOrDefault(l => l.User.UserName == currentUser.UserName);
             var courses = currentUserProfile.Courses.AsQueryable();
 
-            return View(courses);
+            return this.View(courses);
         }
 
         public ActionResult EditProfile()
@@ -41,7 +39,7 @@ namespace UniversitySystem.Web.Controllers
             var departments = this.data.Departments.All();
             var model = new EditStudentsProfileViewModel(currentUserProfile, departments);
 
-            return View(model);
+            return this.View(model);
         }
 
         [HttpPost]
@@ -62,17 +60,17 @@ namespace UniversitySystem.Web.Controllers
                 currentUser.LastName = student.LastName;
                 this.data.SaveChanges();
 
-                TempData["message"] = "Your profile has been updated!";
-                TempData["type"] = NotificationType.Success;
+                this.TempData["message"] = "Your profile has been updated!";
+                this.TempData["type"] = NotificationType.Success;
 
-                return RedirectToAction("Profile", "Student");
+                return this.RedirectToAction("Profile", "Student");
             }
             else
             {
-                TempData["message"] = "You are trying to input some invalid data!";
-                TempData["type"] = NotificationType.Error;
+                this.TempData["message"] = "You are trying to input some invalid data!";
+                this.TempData["type"] = NotificationType.Error;
 
-                return RedirectToAction("EditProfile", "Student");
+                return this.RedirectToAction("EditProfile", "Student");
             }
         }
     }

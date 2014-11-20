@@ -19,11 +19,12 @@
 
         public void CreateUserRoles()
         {
-            IdentityRole[] roles = {
-                                       new IdentityRole() { Name = "Admin" },
-                                       new IdentityRole() { Name = "Teacher" },
-                                       new IdentityRole() { Name = "Student" }
-                                   };
+            IdentityRole[] roles = 
+            {
+                new IdentityRole() { Name = "Admin" },
+                new IdentityRole() { Name = "Teacher" },
+                new IdentityRole() { Name = "Student" }
+            };
 
             foreach (var role in roles)
             {
@@ -35,12 +36,13 @@
 
         public void CreateDepartments()
         {
-            Department[] departments = { 
-                                           new Department() { Name  = "Informatics" },
-                                           new Department() { Name = "History" },
-                                           new Department() { Name = "Architecture" },
-                                           new Department() { Name = "Economics"}
-                                       };
+            Department[] departments = 
+            { 
+                new Department() { Name  = "Informatics" },
+                new Department() { Name = "History" },
+                new Department() { Name = "Architecture" },
+                new Department() { Name = "Economics" }
+            };
 
             foreach (var department in departments)
             {

@@ -5,8 +5,6 @@ VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversitySystem.Web", "UniversitySystem.Web\UniversitySystem.Web.csproj", "{783753D8-5FB5-4BED-B239-9ED760D370E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversitySystem.Web.Tests", "UniversitySystem.Web.Tests\UniversitySystem.Web.Tests.csproj", "{E28FF873-BB06-40F9-BC9F-A96A9B1D3FA5}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversitySystem.Models", "UniversitySystem.Models\UniversitySystem.Models.csproj", "{0C5CC9C5-554B-4DC8-9090-0274DE891B00}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversitySystem.Data", "UniversitySystem.Data\UniversitySystem.Data.csproj", "{F456ADB5-64E3-476E-84C3-2CA3FE5E2DC4}"
@@ -21,10 +19,6 @@ Global
 		{783753D8-5FB5-4BED-B239-9ED760D370E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{783753D8-5FB5-4BED-B239-9ED760D370E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{783753D8-5FB5-4BED-B239-9ED760D370E1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E28FF873-BB06-40F9-BC9F-A96A9B1D3FA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E28FF873-BB06-40F9-BC9F-A96A9B1D3FA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E28FF873-BB06-40F9-BC9F-A96A9B1D3FA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E28FF873-BB06-40F9-BC9F-A96A9B1D3FA5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0C5CC9C5-554B-4DC8-9090-0274DE891B00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0C5CC9C5-554B-4DC8-9090-0274DE891B00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C5CC9C5-554B-4DC8-9090-0274DE891B00}.Release|Any CPU.ActiveCfg = Release|Any CPU
