@@ -41,15 +41,14 @@
 
             if (addRole == true)
             {
-                var currentUser = this.Data.Users.All().FirstOrDefault(u => u.UserName == User.Identity.Name);
                 user.Roles.Add(new IdentityUserRole() { RoleId = userRole.Id, UserId = user.Id });
 
                 bool teacherProfileExists = this.Data.Lecturers.All()
-                    .FirstOrDefault(s => s.UserId == currentUser.Id) != null;
+                    .FirstOrDefault(s => s.UserId == user.Id) != null;
                 
                 if (role == "Teacher" && teacherProfileExists == false)
                 {
-                    var studentProfile = this.Data.Students.All().FirstOrDefault(s => s.UserId == currentUser.Id);
+                    var studentProfile = this.Data.Students.All().FirstOrDefault(s => s.UserId == user.Id);
                     var teacherProfile = new Lecturer() { FirstName = studentProfile.FirstName, LastName = studentProfile.LastName, UserId = user.Id };
                     this.Data.Lecturers.Add(teacherProfile);
                 }
