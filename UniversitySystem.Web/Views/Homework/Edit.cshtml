@@ -1,0 +1,26 @@
+﻿@model UniversitySystem.Web.Models.InputModels.HomeworkInputModel
+@{
+    ViewBag.Title = "Edit homework";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<form method="post" action="/Homework/Edit?homeworkId=@Model.Id">
+    @Html.AntiForgeryToken()
+    <fieldset>
+        <legend>Add homework</legend>
+        <div class="form-group">
+            <label for="description" class="col-lg-2 control-label">Description</label>
+            <div class="col-lg-10">
+                <textarea class="form-control" name="Description" rows="3" id="description">@Model.Description</textarea>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <br />
+                <button type="submit" class="btn btn-primary">Edit</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+

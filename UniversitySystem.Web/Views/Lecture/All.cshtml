@@ -17,11 +17,30 @@
         <div>
             <h3>@lecture.Title</h3>
             <p>@lecture.Description</p>
+            @if (lecture.Homework != null)
+            {
+                @Ajax.ActionLink("View homework", "ViewHomework", "Homework", new { id = lecture.Homework.Id }, new AjaxOptions
+                    {
+                        HttpMethod = "Get",
+                        InsertionMode = InsertionMode.Replace,
+                        UpdateTargetId = "homework"
+                    })
+            }
             @if (User.IsInRole("Teacher"))
 	        {
-		        <a href="/Lecture/Edit/@lecture.Id" class="btn btn-info">Edit</a>
+                <a href="/Lecture/Edit/@lecture.Id" class="btn btn-info">Edit</a>
                 <a href="/Lecture/Delete/@lecture.Id" class="btn btn-danger">Delete</a>
-	        }
-        </div>  
+                if (lecture.Homework == null)
+                {
+                    <a href="/Homework/Create?lectureId=@lecture.Id" class="btn btn-info">Add homework</a>
+                }
+                else
+                {
+                    <a href="/Homework/Edit/?lectureId=@lecture.Id" class="btn btn-info">Edit homework</a>
+                    <a href="/Homework/Delete?lectureId=@lecture.Id" class="btn btn-danger">Remove homework</a>
+                }
+            }
+            <div id="homework"></div>
+        </div>
     }
 }
