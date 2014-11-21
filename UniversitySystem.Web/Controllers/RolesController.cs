@@ -44,25 +44,22 @@
                 var currentUser = this.Data.Users.All().FirstOrDefault(u => u.UserName == User.Identity.Name);
                 user.Roles.Add(new IdentityUserRole() { RoleId = userRole.Id, UserId = user.Id });
 
-                bool studentProfileExists = this.Data.Students.All()
-                    .FirstOrDefault(s => s.FirstName == currentUser.FirstName && s.LastName == currentUser.LastName) != null;
                 bool teacherProfileExists = this.Data.Lecturers.All()
-                    .FirstOrDefault(s => s.FirstName == currentUser.FirstName && s.LastName == currentUser.LastName) != null;
-                if (role == "Student" && studentProfileExists == false)
+                    .FirstOrDefault(s => s.UserId == currentUser.Id) != null;
+                
+                if (role == "Teacher" && teacherProfileExists == false)
                 {
-                    var studentProfile = new Student() { FirstName = user.FirstName, LastName = user.LastName, UserId = user.Id };
-                    this.Data.Students.Add(studentProfile);
-                }
-                else if (role == "Teacher" && teacherProfileExists == false)
-                {
-                    var teacherProfile = new Lecturer() { FirstName = user.FirstName, LastName = user.LastName, UserId = user.Id };
+                    var studentProfile = this.Data.Students.All().FirstOrDefault(s => s.UserId == currentUser.Id);
+                    var teacherProfile = new Lecturer() { FirstName = studentProfile.FirstName, LastName = studentProfile.LastName, UserId = user.Id };
                     this.Data.Lecturers.Add(teacherProfile);
                 }
 
                 this.Data.SaveChanges();
+
                 var message = string.Format("{0} now has the role {1}!", user.Email, role);
                 this.TempData["message"] = message;
                 this.TempData["type"] = NotificationType.Success;
+
                 return this.RedirectToAction("Index", "Home");
             }
             else
@@ -70,9 +67,11 @@
                 var roleToRemove = user.Roles.FirstOrDefault(r => r.RoleId == userRole.Id && r.UserId == user.Id);
                 user.Roles.Remove(roleToRemove);
                 this.Data.SaveChanges();
+
                 var message = string.Format("{0} has no longer the role {1}!", user.Email, role);
                 this.TempData["message"] = message;
                 this.TempData["type"] = NotificationType.Success;
+
                 return this.RedirectToAction("Index", "Home");
             }
         }

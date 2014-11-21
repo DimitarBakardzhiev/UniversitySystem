@@ -156,7 +156,7 @@
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email, FirstName = model.FirstName, LastName = model.LastName };
+                var user = new User { UserName = model.Email, Email = model.Email };
                 var studentRole = this.data.Roles.All().FirstOrDefault(r => r.Name == "Student");
                 user.Roles.Add(new IdentityUserRole() { RoleId = studentRole.Id, UserId = user.Id });
 
@@ -173,7 +173,7 @@
 
                     // var studentRole = this.data.Roles.All().FirstOrDefault(r => r.Name == "Student");
                     // user.Roles.Add(new IdentityUserRole() { RoleId = studentRole.Id, UserId = user.Id });
-                    var studentProfile = new Student() { FirstName = user.FirstName, LastName = user.LastName, UserId = user.Id };
+                    var studentProfile = new Student() { FirstName = model.FirstName, LastName = model.LastName, UserId = user.Id };
                     this.data.Students.Add(studentProfile);
                     this.data.SaveChanges();
 
