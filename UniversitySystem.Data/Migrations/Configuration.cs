@@ -1,6 +1,12 @@
 namespace UniversitySystem.Data.Migrations
 {
     using System.Data.Entity.Migrations;
+    using System.Linq;
+
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+
+    using UniversitySystem.Models;
 
     public sealed class Configuration : DbMigrationsConfiguration<UniversitySystemDbContext>
     {
@@ -23,6 +29,16 @@ namespace UniversitySystem.Data.Migrations
             //      new Person { FullName = "Brice Lambson" },
             //      new Person { FullName = "Rowan Miller" }
             //    );
+
+            if (!context.Users.Any(u => u.UserName == "founder"))
+            {
+                var store = new UserStore<User>(context);
+                var manager = new UserManager<User>(store);
+                var user = new User { UserName = "founder@founder.com", Email = "founder@founder.com" };
+
+                manager.Create(user, "123456");
+                // manager.AddToRole(user.Id, "AppAdmin");
+            }
         }
     }
 }
