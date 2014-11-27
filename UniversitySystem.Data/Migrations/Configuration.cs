@@ -37,7 +37,10 @@ namespace UniversitySystem.Data.Migrations
                 var user = new User { UserName = "founder@founder.com", Email = "founder@founder.com" };
 
                 manager.Create(user, "123456");
-                // manager.AddToRole(user.Id, "AppAdmin");
+
+                var adminRole = context.Roles.FirstOrDefault(r => r.Name == "Admin");
+                user.Roles.Add(new IdentityUserRole { RoleId = adminRole.Id, UserId = user.Id });
+                context.SaveChanges();
             }
         }
     }
