@@ -1,6 +1,8 @@
 ﻿namespace UniversitySystem.Web.Controllers
 {
+    using System.IO;
     using System.Linq;
+    using System.Web;
     using System.Web.Mvc;
     using UniversitySystem.Models;
     using UniversitySystem.Web.Models;
@@ -99,6 +101,30 @@
             var homework = this.Data.Homework.Find(id);
 
             return this.Content(homework.Description);
+        }
+
+        [AllowAnonymous]
+        [Authorize(Roles = "Student, Teacher")]
+        public ActionResult Submit(int lectureId)
+        {
+            return this.View();
+        }
+
+        [AllowAnonymous]
+        [Authorize(Roles = "Student, Teacher")]
+        [HttpPost]
+        public ActionResult Submit(int lectureId, HttpPostedFileBase file)
+        {
+            if (file.ContentLength > 0)
+            {
+                var fileName = Path.GetFileName(file.FileName);
+                var path = Path.Combine(Server.MapPath("~/App_Data/Homework uploads"), fileName);
+                file.SaveAs(path);
+
+                // TODO: Save to database
+            }
+
+            return this.RedirectToAction("Index", "Home");
         }
     }
 }

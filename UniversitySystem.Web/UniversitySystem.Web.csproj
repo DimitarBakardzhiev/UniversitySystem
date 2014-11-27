@@ -277,9 +277,10 @@
     <Content Include="Views\Lecture\Edit.cshtml" />
     <Content Include="Views\Homework\Create.cshtml" />
     <Content Include="Views\Homework\Edit.cshtml" />
+    <Content Include="Views\Homework\Submit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\Homework uploads\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
